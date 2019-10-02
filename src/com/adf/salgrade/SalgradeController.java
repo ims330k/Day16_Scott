@@ -9,7 +9,8 @@ public class SalgradeController {
 
 		Scanner sc=new Scanner(System.in);
 		SalgradeDAO sdao=new SalgradeDAO();
-		
+		salgradeView sv=new salgradeView();
+		salgradeInput si=new salgradeInput();
 		
 		
 		boolean check=true;
@@ -21,14 +22,14 @@ public class SalgradeController {
 			switch(select) {
 			case 1:
 				System.out.println("전체조회");
-				ArrayList<SalgradeDTO> sdtoList=null;
+				ArrayList<SalDTO> sdtoList=null;
 				sdtoList=sdao.selectAll();
 				//salgradeView.view(sdtoList);
 				break;
 			case 2:
 				System.out.println("검색할 번호 입력");
 				int searchNum=sc.nextInt();//int매개변수, return sdto
-				SalgradeDTO sdto=new SalgradeDTO();
+				SalDTO sdto=new SalDTO();
 				sdto=sdao.selectOne(searchNum);
 				//salgradeView.view(sdto);
 				break;
@@ -40,7 +41,10 @@ public class SalgradeController {
 				int losal=sc.nextInt();
 				System.out.println("hisal : ");
 				int hisal=sc.nextInt();
-				SalgradeDTO sdto2=new SalgradeDTO();
+				SalDTO sdto2=new SalDTO();
+				sdto2.setGrade(grade);
+				sdto2.setLosal(losal);
+				sdto2.setHisal(hisal);
 				result=sdao.insert(sdto2);
 				if(result>0) {
 					System.out.println("성공");

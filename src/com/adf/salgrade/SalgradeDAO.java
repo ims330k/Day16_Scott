@@ -14,20 +14,20 @@ public class SalgradeDAO {
 	Connection con=null;
 	PreparedStatement st=null;
 	ResultSet rs=null;
-	SalgradeDTO sdto=null;
-	ArrayList<SalgradeDTO> sdtoList=null;
+	SalDTO sdto=null;
+	ArrayList<SalDTO> sdtoList=null;
 	//전체,검색, insert, delete
 	
-	public ArrayList<SalgradeDTO> selectAll() {
+	public ArrayList<SalDTO> selectAll() {
 	//전체검색
 		try {
 			con=dbConnector.getConnect();
 			String sql="select * from SALGRADE";
 			st=con.prepareStatement(sql);
 			rs=st.executeQuery();
-			sdtoList=new ArrayList<SalgradeDTO>();
+			sdtoList=new ArrayList<SalDTO>();
 			while(rs.next()) {
-				sdto=new SalgradeDTO();
+				sdto=new SalDTO();
 				sdto.setGrade(rs.getInt("grade"));
 				sdto.setLosal(rs.getInt("losal"));
 				sdto.setHisal(rs.getInt("hisal"));
@@ -51,7 +51,7 @@ public class SalgradeDAO {
 		return sdtoList;
 	}
 	
-	public SalgradeDTO selectOne(int grade) {
+	public SalDTO selectOne(int grade) {
 		try {
 			con=dbConnector.getConnect();
 			
@@ -61,7 +61,7 @@ public class SalgradeDAO {
 			rs=st.executeQuery();
 			
 			if(rs.next()) {	//값 있을때 기준으로 작동
-				sdto=new SalgradeDTO();
+				sdto=new SalDTO();
 				sdto.setGrade(rs.getInt("grade"));
 				sdto.setLosal(rs.getInt("losal"));
 				sdto.setHisal(rs.getInt("hisal"));
@@ -77,7 +77,7 @@ public class SalgradeDAO {
 		return sdto;
 	}
 	
-	public int insert(SalgradeDTO sdto) {
+	public int insert(SalDTO sdto) {
 		int result=0;
 		try {
 			con=dbConnector.getConnect();

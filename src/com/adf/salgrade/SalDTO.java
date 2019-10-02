@@ -1,6 +1,6 @@
 package com.adf.salgrade;
 
-public class SalgradeDTO {
+public class SalDTO {
 
 	private int grade;
 	private int losal;
